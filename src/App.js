@@ -4,6 +4,7 @@ import ProductList from "./components/productList";
 import ProtectedRoute from "./components/protectedRoute";
 import { AuthProvider } from "./components/authContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
 function App() {

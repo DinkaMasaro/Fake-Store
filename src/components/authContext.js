@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   }, []);
 
-  const handleLogin = (email) => {
+  const handleLogin = () => {
     setIsAuthenticated(true);
     sessionStorage.setItem("loggedIn", "true");
   };

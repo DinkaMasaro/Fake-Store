@@ -11,11 +11,7 @@ export default function AlertMessage({ message, type, onClose }) {
 
   if (!message) return null;
 
-  const alertClass = type === "success"
-    ? "alert-success"
-    : type === "warning"
-      ? "alert-warning"
-      : "alert-danger";
+  const alertClass = type === "success" ? "alert-success" : "alert-danger";
 
   return (
     <div

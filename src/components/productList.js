@@ -11,6 +11,7 @@ export default function ProductList() {
     const [loading, setLoading] = useState(true);
     const [alert, setAlert] = useState(null);
     const [showForm, setShowForm] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);  // Estado para controlar el menú desplegable
     const { handleLogout } = useAuth();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export default function ProductList() {
                 setLoading(false);
             })
             .catch((error) => {
-                setAlert({ text: "Error al obtener los productos", type: "error" });
+                setAlert({ text: "Error getting products", type: "error" });
                 setLoading(false);
             });
     }, [navigate]);
@@ -32,7 +33,7 @@ export default function ProductList() {
     const addProductHandler = (newProduct) => {
         setProducts([...products, newProduct]);
         setShowForm(false);
-        setAlert({ text: "Producto agregado con éxito", type: "success" });
+        setAlert({ text: "Product successfully added", type: "success" });
     };
 
     const handleCloseAlert = () => {
@@ -44,10 +45,10 @@ export default function ProductList() {
             .delete(`https://fakestoreapi.com/products/${id}`)
             .then(() => {
                 setProducts(products.filter(product => product.id !== id));
-                setAlert({ text: "Producto eliminado con éxito", type: "success" });
+                setAlert({ text: "Product successfully deleted", type: "success" });
             })
             .catch((error) => {
-                setAlert({ text: "Error eliminando el producto", type: "error" });
+                setAlert({ text: "Error deleting product", type: "error" });
             });
     };
 
@@ -59,15 +60,32 @@ export default function ProductList() {
         <div className="container mt-5">
             {alert && <AlertMessage message={alert.text} type={alert.type} onClose={handleCloseAlert} />}
 
+            {/* Icono de hamburguesa en la esquina superior derecha */}
             <button
-                className="btn btn-secondary ms-1"
-                onClick={() => {
-                    handleLogout();
-                    navigate("/");
-                }}
+                className="btn btn-light position-fixed top-0 end-0 m-3"
+                onClick={() => setMenuOpen(!menuOpen)}
+                style={{ zIndex: 1000 }}
             >
-                Log out
+                <i className="bi bi-gear" style={{ fontSize: "1.5rem" }}></i> {/* Icono de tuerca */}
             </button>
+
+            {/* Menú desplegable al hacer clic en el ícono de hamburguesa */}
+            {menuOpen && (
+                <div className="position-fixed top-0 end-0 p-3 mt-5" style={{ zIndex: 999 }}>
+                    <div className="bg-light shadow rounded p-2">
+                        <button
+                            className="btn btn-secondary"
+                            onClick={() => {
+                                handleLogout();
+                                navigate("/");
+                            }}
+                        >
+                            Log out
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <h1 className="text-center mb-4">Listado de Productos</h1>
             <div className="text-center mb-4">
                 <button

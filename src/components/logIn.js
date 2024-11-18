@@ -12,14 +12,14 @@ export default function LogIn() {
     const navigate = useNavigate();
 
     const correctEmail = process.env.REACT_APP_CORRECT_EMAIL || "user@gmail.com";
-    const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD || "123456"; 
+    const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD || "123456";
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
 
         if (email === correctEmail && password === correctPassword) {
-            handleLogin(email, password);
+            handleLogin();
             navigate("/products");
         } else {
             setAlert({ text: "Incorrect email or password", type: "error" });
