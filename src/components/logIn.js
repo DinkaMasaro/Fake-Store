@@ -11,8 +11,8 @@ export default function LogIn() {
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
 
-    const correctEmail = "test@rua.com";
-    const correctPassword = "123456"; 
+    const correctEmail = process.env.REACT_APP_CORRECT_EMAIL || "user@gmail.com";
+    const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD || "123456"; 
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
