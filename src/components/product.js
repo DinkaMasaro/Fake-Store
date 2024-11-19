@@ -9,8 +9,7 @@ export default function Product({ addProductHandler }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
+    formState: { errors }
   } = useForm();
 
   const onSubmit = (data) => {
@@ -18,10 +17,6 @@ export default function Product({ addProductHandler }) {
       .post("https://fakestoreapi.com/products", data)
       .then((response) => {
         addProductHandler(response.data);
-        setValue("title", "");
-        setValue("price", "");
-        setValue("description", "");
-        setValue("image", "");
         setAlert({ text: "Producto agregado con éxito", type: "success" });
       })
       .catch((error) => {
@@ -39,11 +34,11 @@ export default function Product({ addProductHandler }) {
         <AlertMessage message={alert.text} type={alert.type} onClose={handleCloseAlert} />
       )}
 
-      <h2 className="mb-4">Agregar Producto</h2>
+      <h2 className="mb-4">Add Product</h2>
 
       <div className="mb-3">
         <label htmlFor="title" className="form-label">
-          Título:
+          Title:
         </label>
         <input
           type="text"
@@ -62,10 +57,11 @@ export default function Product({ addProductHandler }) {
 
       <div className="mb-3">
         <label htmlFor="price" className="form-label">
-          Precio:
+          Price:
         </label>
         <input
           type="number"
+          step="0.01"
           className="form-control"
           id="price"
           {...register("price", {
@@ -80,9 +76,10 @@ export default function Product({ addProductHandler }) {
         {errors.price && <div className="text-danger">{errors.price.message}</div>}
       </div>
 
+
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
-          Descripción:
+          Description:
         </label>
         <textarea
           className="form-control"
@@ -100,7 +97,7 @@ export default function Product({ addProductHandler }) {
 
       <div className="mb-3">
         <label htmlFor="image" className="form-label">
-          URL de la Imagen:
+          Image URL:
         </label>
         <input
           type="text"
@@ -118,7 +115,7 @@ export default function Product({ addProductHandler }) {
       </div>
 
       <button type="submit" className="btn btn-primary">
-        Agregar Producto
+        Add Product
       </button>
     </form>
   );

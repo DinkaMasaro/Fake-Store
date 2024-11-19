@@ -7,16 +7,14 @@ export default function LogIn() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [alert, setAlert] = useState("");
-    const [loading, setLoading] = useState(false);
     const { handleLogin } = useAuth();
     const navigate = useNavigate();
 
-    const correctEmail = process.env.REACT_APP_CORRECT_EMAIL || "user@gmail.com";
-    const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD || "123456";
+    const correctEmail = process.env.REACT_APP_CORRECT_EMAIL;
+    const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD;
 
     const handleLoginSubmit = (e) => {
         e.preventDefault();
-        setLoading(true);
 
         if (email === correctEmail && password === correctPassword) {
             handleLogin();
@@ -25,7 +23,6 @@ export default function LogIn() {
             setAlert({ text: "Incorrect email or password", type: "error" });
         }
 
-        setLoading(false);
     };
 
     const handleCloseAlert = () => {
@@ -62,7 +59,7 @@ export default function LogIn() {
                         required
                     />
                 </div>
-                <button className="btn btn-primary w-100" type="submit" disabled={loading}>
+                <button className="btn btn-primary w-100" type="submit">
                     Log in
                 </button>
                 {alert && <AlertMessage

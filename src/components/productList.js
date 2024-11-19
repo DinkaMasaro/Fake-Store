@@ -81,7 +81,7 @@ export default function ProductList() {
                 </div>
             )}
 
-            <h1 className="text-center mb-4">Listado de Productos</h1>
+            <h1 className="text-center mb-4">Product List</h1>
             <div className="text-center mb-4">
                 <button
                     className="btn btn-primary"
@@ -125,7 +125,6 @@ export default function ProductList() {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Add Product</h5>
                                 <button
                                     type="button"
                                     className="btn-close"
