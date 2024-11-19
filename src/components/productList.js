@@ -11,13 +11,10 @@ export default function ProductList() {
     const [loading, setLoading] = useState(true);
     const [alert, setAlert] = useState(null);
     const [showForm, setShowForm] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);  // Estado para controlar el menú desplegable
+    const [menuOpen, setMenuOpen] = useState(false);  
     const { handleLogout } = useAuth();
 
     useEffect(() => {
-        const isLoggedIn = sessionStorage.getItem("loggedIn");
-        console.log("isLoggedIn", isLoggedIn);
-
         axios
             .get("https://fakestoreapi.com/products")
             .then((response) => {
@@ -60,16 +57,14 @@ export default function ProductList() {
         <div className="container mt-5">
             {alert && <AlertMessage message={alert.text} type={alert.type} onClose={handleCloseAlert} />}
 
-            {/* Icono de hamburguesa en la esquina superior derecha */}
             <button
                 className="btn btn-light position-fixed top-0 end-0 m-3"
                 onClick={() => setMenuOpen(!menuOpen)}
                 style={{ zIndex: 1000 }}
             >
-                <i className="bi bi-gear" style={{ fontSize: "1.5rem" }}></i> {/* Icono de tuerca */}
+                <i className="bi bi-gear" style={{ fontSize: "1.5rem" }}></i> 
             </button>
 
-            {/* Menú desplegable al hacer clic en el ícono de hamburguesa */}
             {menuOpen && (
                 <div className="position-fixed top-0 end-0 p-3 mt-5" style={{ zIndex: 999 }}>
                     <div className="bg-light shadow rounded p-2">
@@ -91,7 +86,7 @@ export default function ProductList() {
                 <button
                     className="btn btn-primary"
                     onClick={() => setShowForm(true)}
-                >Agregar Producto</button>
+                >Add Product</button>
             </div>
 
             <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -117,7 +112,7 @@ export default function ProductList() {
                                     className="btn btn-danger"
                                     onClick={() => deleteProductHandler(product.id)}
                                 >
-                                    Eliminar Producto
+                                    Delete Product
                                 </button>
                             </div>
                         </div>
@@ -130,7 +125,7 @@ export default function ProductList() {
                     <div className="modal-dialog">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Agregar Producto</h5>
+                                <h5 className="modal-title">Add Product</h5>
                                 <button
                                     type="button"
                                     className="btn-close"

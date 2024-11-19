@@ -17,7 +17,7 @@ export default function AlertMessage({ message, type, onClose }) {
     <div
       className={`alert ${alertClass} position-fixed top-0 start-50 translate-middle-x w-50`}
       role="alert"
-      style={{ marginTop: '32px' }}
+      style={{ marginTop: '32px', zIndex: 1050 }}
     >
       {message}
       <button

@@ -35,7 +35,7 @@ export default function LogIn() {
     return (
         <div className="container mt-5">
             <form onSubmit={handleLoginSubmit} className="bg-light p-4 rounded shadow">
-                <h1 className="text-center mb-4">Log in RUA</h1>
+                <h1 className="text-center mb-4">Fake Store</h1>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>
                     <input
